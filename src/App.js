@@ -41,7 +41,8 @@ class App extends Component {
       ...this.state,
       debts: [...debts],
       form: {
-        name: ''
+        name: '',
+        id: undefined
       }
     });
   }
