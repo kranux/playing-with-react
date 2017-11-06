@@ -24,6 +24,7 @@ class App extends Component {
 
     this.elementUpdated = this.elementUpdated.bind(this);
     this.showEditForm = this.showEditForm.bind(this);
+    this.showDeleteForm = this.showDeleteForm.bind(this);
   }
 
   elementUpdated(element) {
@@ -54,12 +55,17 @@ class App extends Component {
     });
   }
 
+  showDeleteForm(element) {
+    console.log('delete?', element);
+  }
+
   render() {
     return (
       <div className="App">
         <ListOfDebts
           value={this.state.debts}
           showEditForm={this.showEditForm}
+          showDeleteForm={this.showDeleteForm}
         />
         <DebtForm
           value={this.state.form} 
