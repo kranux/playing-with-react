@@ -12,7 +12,6 @@ class App extends Component {
 
     this.state = {
       form: {
-        id: uuid(),
         name: 'initial-name'
       },
       debts: [
@@ -23,16 +22,30 @@ class App extends Component {
       ]
     };
 
-    this.createListElement = this.createListElement.bind(this);
+    this.elementUpdated = this.elementUpdated.bind(this);
     this.showEditForm = this.showEditForm.bind(this);
   }
 
-  createListElement(element) {
+  elementUpdated(element) {
+
+    let debts = this.state.debts;
+
+    console.log(debts, element);
+    if (element.id) {
+      const index = debts.findIndex(d=>d.id === element.id);
+
+      debts = [debts.slice(0, index - 1), element, debts.slice(index)];
+      console.log(index, debts);
+    } else {
+      debts = [...debts, {
+        ...element,
+        id: uuid()
+      }];
+    }
     this.setState({
       ...this.state,
-      debts: [...this.state.debts, element],
+      debts: [...debts],
       form: {
-        id: uuid(),
         name: 'initial-name'
       }
     });
@@ -54,7 +67,7 @@ class App extends Component {
         />
         <CreateDebtForm
           value={this.state.form} 
-          createListElement={this.createListElement}
+          elementUpdated={this.elementUpdated}
         />
       </div>
     );

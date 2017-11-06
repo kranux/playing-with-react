@@ -12,7 +12,7 @@ export default class CreateDebtForm extends React.Component {
     }
 
     handleSubmit(event) {
-        this.props.createListElement(this.state);
+        this.props.elementUpdated(this.state);
 
         event.preventDefault();
     }
