@@ -4,14 +4,22 @@ export default class CreateDebtForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {name: 'initial-name'};
+        this.state = {
+            id: new Date().getMilliseconds(),
+            name: 'initial-name'
+        };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleSubmit(event) {
-        console.log('submit', this.state);
+        this.props.createListElement(this.state);
+
+        this.setState({
+            id: new Date().getMilliseconds(),
+            name: 'initial-name'
+        });
         event.preventDefault();
     }
 
@@ -20,7 +28,7 @@ export default class CreateDebtForm extends React.Component {
     }
 
     render() {
-        return( 
+        return ( 
         <form onSubmit={this.handleSubmit}>
             <div>
                 <label htmlFor="nameInput">Name</label>
@@ -38,6 +46,7 @@ export default class CreateDebtForm extends React.Component {
                     value="Submit"
                 />
             </div>
-        </form>);
+        </form>
+        );
     }
 }
