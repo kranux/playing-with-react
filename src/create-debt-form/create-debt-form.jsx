@@ -4,30 +4,39 @@ export default class CreateDebtForm extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {name: 'initial-name'};
 
-        this.onClickSubmit = this.onClickSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
-    
-    onClickSubmit(e) {
-        e.preventDefault();
-        console.log('The link was clicked.')
+
+    handleSubmit(event) {
+        console.log('submit', this.state);
+        event.preventDefault();
+    }
+
+    handleChange(event) {
+        this.setState({[event.target.name]: event.target.value});
     }
 
     render() {
         return( 
-        <form>
+        <form onSubmit={this.handleSubmit}>
             <div>
                 <label htmlFor="nameInput">Name</label>
                 <input 
-                    type="text" 
+                    id="nameInput"
                     name="name"
-                    id="nameInput" 
+                    onChange={this.handleChange}
+                    type="text" 
+                    value={this.state.name} 
                 />
             </div>
             <div>
-                <button 
-                    onClick={this.onClickSubmit}
-                >Submit</button>
+                <input 
+                    type="submit"
+                    value="Submit"
+                />
             </div>
         </form>);
     }
