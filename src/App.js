@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import uuid from 'uuid/v1';
+
+
 import './App.css';
 
 import CreateDebtForm from './create-debt-form/create-debt-form';
@@ -10,12 +13,18 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {debts: [
-      {
-        id: new Date().getMilliseconds(),
-        name:'aaa'
-      }
-    ]};
+    this.state = {
+      form: {
+        id: uuid(),
+        name: 'initial-name'
+      },
+      debts: [
+        {
+          id: uuid(),
+          name:'aaa'
+        }
+      ]
+    };
 
     this.createListElement = this.createListElement.bind(this);
   }
@@ -27,11 +36,23 @@ class App extends Component {
     });
   }
 
+  showEditForm(element) {
+    this.setState({
+      ...this.state,
+      form: {...element}
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <ListOfDebts value={this.state.debts}/>
-        <CreateDebtForm createListElement={this.createListElement}/>
+        <ListOfDebts
+          value={this.state.debts}
+          showEditForm={this.showEditForm}
+        />
+        <CreateDebtForm
+          value={this.state.form} 
+          createListElement={this.createListElement}/>
       </div>
     );
   }

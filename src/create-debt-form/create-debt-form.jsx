@@ -1,13 +1,11 @@
 import React from 'react';
+import uuid from 'uuid/v1';
 
 export default class CreateDebtForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            id: new Date().getMilliseconds(),
-            name: 'initial-name'
-        };
+        this.state = props.value;
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -17,7 +15,7 @@ export default class CreateDebtForm extends React.Component {
         this.props.createListElement(this.state);
 
         this.setState({
-            id: new Date().getMilliseconds(),
+            id: uuid(),
             name: 'initial-name'
         });
         event.preventDefault();
