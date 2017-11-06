@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import uuid from 'uuid/v1';
 
 import './App.css';
-import CreateDebtForm from './create-debt-form/create-debt-form';
+import DebtForm from './debt-form/debt-form';
 import ListOfDebts from './list-of-debts/list-of-debts';
 
 class App extends Component {
@@ -61,7 +61,7 @@ class App extends Component {
           value={this.state.debts}
           showEditForm={this.showEditForm}
         />
-        <CreateDebtForm
+        <DebtForm
           value={this.state.form} 
           elementUpdated={this.elementUpdated}
         />

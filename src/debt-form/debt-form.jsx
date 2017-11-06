@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class CreateDebtForm extends React.Component {
+export default class DebtForm extends React.Component {
 
     constructor(props) {
         super(props);
