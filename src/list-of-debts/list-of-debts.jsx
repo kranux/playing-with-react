@@ -9,7 +9,7 @@ export default class ListOfDebts extends React.Component {
                         {item.name} 
                         <span 
                             className="controls"
-                            onClick={this.props.showEditForm}
+                            onClick={() => this.props.showEditForm(item)}
                         >Edit</span>
                     </li>
                     )}

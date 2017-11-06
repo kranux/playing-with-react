@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-
 import uuid from 'uuid/v1';
 
-
 import './App.css';
-
 import CreateDebtForm from './create-debt-form/create-debt-form';
 import ListOfDebts from './list-of-debts/list-of-debts';
 
@@ -27,12 +24,17 @@ class App extends Component {
     };
 
     this.createListElement = this.createListElement.bind(this);
+    this.showEditForm = this.showEditForm.bind(this);
   }
 
   createListElement(element) {
     this.setState({
       ...this.state,
-      debts: [...this.state.debts, element]
+      debts: [...this.state.debts, element],
+      form: {
+        id: uuid(),
+        name: 'initial-name'
+      }
     });
   }
 
@@ -52,7 +54,8 @@ class App extends Component {
         />
         <CreateDebtForm
           value={this.state.form} 
-          createListElement={this.createListElement}/>
+          createListElement={this.createListElement}
+        />
       </div>
     );
   }
