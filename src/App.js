@@ -27,15 +27,10 @@ class App extends Component {
   }
 
   elementUpdated(element) {
-
     let debts = this.state.debts;
-
-    console.log(debts, element);
     if (element.id) {
-      const index = debts.findIndex(d=>d.id === element.id);
-
-      debts = [debts.slice(0, index - 1), element, debts.slice(index)];
-      console.log(index, debts);
+      const index = debts.findIndex(d => d.id === element.id);
+      debts = [...debts.slice(0, index), element, ...debts.slice(index + 1)];
     } else {
       debts = [...debts, {
         ...element,
@@ -46,7 +41,7 @@ class App extends Component {
       ...this.state,
       debts: [...debts],
       form: {
-        name: 'initial-name'
+        name: ''
       }
     });
   }
