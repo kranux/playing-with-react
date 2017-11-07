@@ -2,49 +2,49 @@ import React from 'react';
 
 export default class DebtForm extends React.Component {
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = props.value;
+    this.state = props.value;
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-    handleSubmit(event) {
-        this.props.elementUpdated(this.state);
+  handleSubmit(event) {
+    this.props.elementUpdated(this.state);
 
-        event.preventDefault();
-    }
+    event.preventDefault();
+  }
 
-    handleChange(event) {
-        this.setState({[event.target.name]: event.target.value});
-    }
+  handleChange(event) {
+    this.setState({[event.target.name]: event.target.value});
+  }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState(nextProps.value);
-    }
+  componentWillReceiveProps(nextProps) {
+    this.setState(nextProps.value);
+  }
 
-    render() {
-        return ( 
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label htmlFor="nameInput">Name</label>
-                    <input 
-                        id="nameInput"
-                        name="name"
-                        onChange={this.handleChange}
-                        type="text" 
-                        value={this.state.name} 
-                    />
-                </div>
-                <div>
-                    <input 
-                        type="submit"
-                        value="Submit"
-                    />
-                </div>
-            </form>
-        );
-    }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <div>
+          <label htmlFor="nameInput">Name</label>
+          <input
+            id="nameInput"
+            name="name"
+            onChange={this.handleChange}
+            type="text"
+            value={this.state.name}
+          />
+        </div>
+        <div>
+          <input
+            type="submit"
+            value="Submit"
+          />
+        </div>
+      </form>
+    );
+  }
 }
