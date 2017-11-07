@@ -3,15 +3,40 @@ import React from 'react';
 import {formatTime} from '../utils';
 
 export default class ListOfDebts extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.toggleSort = this.toggleSort.bind(this);
+    this.renderSortMarker = this.renderSortMarker.bind(this);
+  }
+
+  toggleSort(fieldName) {
+    const sortDirection = this.props.sort[fieldName];
+    this.props.changeSort(fieldName, sortDirection ? -sortDirection : 1);
+  }
+
+  renderSortMarker(fieldName) {
+    const sortDirection = this.props.sort[fieldName];
+    if (sortDirection) {
+      return sortDirection > 0 ? '\u25B2' : '\u25BC';
+    }
+    return null;
+  }
+
   render() {
     return (
       <table>
         <thead>
           <tr>
-            <td>Returned</td>
-            <td>Name</td>
-            <td>Date borrowed</td>
-            <td>Due date</td>
+            <td onClick={() => this.toggleSort('isReturned')}
+            >Returned {this.renderSortMarker('isReturned')}</td>
+            <td onClick={() => this.toggleSort('name')}
+            >Name {this.renderSortMarker('name')}</td>
+            <td onClick={() => this.toggleSort('dateBorrowed')}
+            >Date borrowed {this.renderSortMarker('dateBorrowed')}</td>
+            <td onClick={() => this.toggleSort('dueDate')}
+            >Due date {this.renderSortMarker('dueDate')}</td>
             <td></td>
           </tr>
         </thead>

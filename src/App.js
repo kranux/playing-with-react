@@ -25,9 +25,13 @@ class App extends Component {
           name: 'aaa',
         }
       ],
-      delete: undefined
+      delete: undefined,
+      sort: {
+        name: -1
+      }
     };
 
+    this.changeSort = this.changeSort.bind(this);
     this.deleteElement = this.deleteElement.bind(this);
     this.elementUpdated = this.elementUpdated.bind(this);
     this.hideDeleteDialog = this.hideDeleteDialog.bind(this);
@@ -88,12 +92,22 @@ class App extends Component {
     });
   }
 
+  changeSort(fieldName, order) {
+    this.setState({
+      sort: {
+        [fieldName]: order
+      }
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <ListOfDebts
+          changeSort={this.changeSort}
           showDeleteForm={this.showDeleteForm}
           showEditForm={this.showEditForm}
+          sort={this.state.sort}
           value={this.state.debts}
         />
         <DebtForm
