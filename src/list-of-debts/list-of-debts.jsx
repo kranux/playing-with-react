@@ -16,7 +16,13 @@ export default class ListOfDebts extends React.Component {
         <tbody>
           {this.props.value.map(item =>
             <tr key={item.id}>
-              <td>{item.isReturned}</td>
+              <td>
+                <input
+                  checked={item.isReturned}
+                  disabled="disabled"
+                  type="checkbox"
+                />
+              </td>
               <td>{item.name}</td>
               <td>{item.dateBorrowed}</td>
               <td>{item.dueDate}</td>

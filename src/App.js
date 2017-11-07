@@ -13,12 +13,14 @@ class App extends Component {
 
     this.state = {
       form: {
-        name: 'initial-name'
+        isReturned: false,
+        name: 'initial-name',
       },
       debts: [
         {
           id: uuid(),
-          name:'aaa'
+          isReturned: false,
+          name:'aaa',
         }
       ],
       delete: undefined
@@ -46,8 +48,9 @@ class App extends Component {
       ...this.state,
       debts: [...debts],
       form: {
+        id: undefined,
+        isReturned: false,
         name: '',
-        id: undefined
       }
     });
   }

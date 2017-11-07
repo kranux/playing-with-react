@@ -13,12 +13,12 @@ export default class DebtForm extends React.Component {
 
   handleSubmit(event) {
     this.props.elementUpdated(this.state);
-
     event.preventDefault();
   }
 
   handleChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+    const parsedValue = event.target.type === 'checkbox' ? Boolean(event.target.checked) : event.target.value;
+    this.setState({[event.target.name]: parsedValue});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -37,6 +37,17 @@ export default class DebtForm extends React.Component {
             type="text"
             value={this.state.name}
           />
+        </div>
+        <div>
+          <label htmlFor="isReturnedInput">
+            <input
+              checked={this.state.isReturned}
+              id="isReturnedInput"
+              name="isReturned"
+              onChange={this.handleChange}
+              type="checkbox"
+            /> - is returned
+          </label>
         </div>
         <div>
           <input
