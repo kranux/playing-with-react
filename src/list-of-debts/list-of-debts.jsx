@@ -8,7 +8,6 @@ export default class ListOfDebts extends React.Component {
     super(props);
 
     this.toggleSort = this.toggleSort.bind(this);
-    this.renderSortMarker = this.renderSortMarker.bind(this);
   }
 
   toggleSort(fieldName) {
@@ -24,19 +23,23 @@ export default class ListOfDebts extends React.Component {
     return null;
   }
 
+  renderSortableColumnHeader(label, fieldName) {
+    return (
+      <td
+        onClick={() => this.toggleSort(fieldName)}
+      >{label} {this.renderSortMarker(fieldName)}</td>
+    );
+  }
+
   render() {
     return (
       <table>
         <thead>
           <tr>
-            <td onClick={() => this.toggleSort('isReturned')}
-            >Returned {this.renderSortMarker('isReturned')}</td>
-            <td onClick={() => this.toggleSort('name')}
-            >Name {this.renderSortMarker('name')}</td>
-            <td onClick={() => this.toggleSort('dateBorrowed')}
-            >Date borrowed {this.renderSortMarker('dateBorrowed')}</td>
-            <td onClick={() => this.toggleSort('dueDate')}
-            >Due date {this.renderSortMarker('dueDate')}</td>
+            {this.renderSortableColumnHeader('Returned?', 'isReturned')}
+            {this.renderSortableColumnHeader('Name', 'name')}
+            {this.renderSortableColumnHeader('Date borrowed', 'dateBorrowed')}
+            {this.renderSortableColumnHeader('Due date', 'dueDate')}
             <td></td>
           </tr>
         </thead>
