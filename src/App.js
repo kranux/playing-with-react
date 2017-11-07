@@ -13,14 +13,16 @@ class App extends Component {
 
     this.state = {
       form: {
+        dateBorrowed: new Date(),
         isReturned: false,
         name: 'initial-name',
       },
       debts: [
         {
+          dateBorrowed: new Date(),
           id: uuid(),
           isReturned: false,
-          name:'aaa',
+          name: 'aaa',
         }
       ],
       delete: undefined

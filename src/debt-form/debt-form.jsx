@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {formatTime} from '../utils';
+
 export default class DebtForm extends React.Component {
 
   constructor(props) {
@@ -48,6 +50,26 @@ export default class DebtForm extends React.Component {
               type="checkbox"
             /> - is returned
           </label>
+        </div>
+        <div>
+          <label htmlFor="dateBorrowedInput">Date borrowed</label>
+          <input
+            id="dateBorrowedInput"
+            name="dateBorrowed"
+            onChange={this.handleChange}
+            type="date"
+            value={formatTime(this.state.dateBorrowed)}
+          />
+        </div>
+        <div>
+          <label htmlFor="dueDateInput">Due date</label>
+          <input
+            id="dueDateInput"
+            name="dueDate"
+            onChange={this.handleChange}
+            type="date"
+            value={formatTime(this.state.dueDate)}
+          />
         </div>
         <div>
           <input

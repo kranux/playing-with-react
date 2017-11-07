@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {formatTime} from '../utils';
+
 export default class ListOfDebts extends React.Component {
   render() {
     return (
@@ -24,8 +26,8 @@ export default class ListOfDebts extends React.Component {
                 />
               </td>
               <td>{item.name}</td>
-              <td>{item.dateBorrowed}</td>
-              <td>{item.dueDate}</td>
+              <td>{formatTime(item.dateBorrowed)}</td>
+              <td>{formatTime(item.dueDate)}</td>
               <td className="controls">
                 <span
                   onClick={() => this.props.showEditForm(item)}
