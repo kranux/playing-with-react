@@ -23,6 +23,12 @@ class App extends Component {
           id: uuid(),
           isReturned: false,
           name: 'aaa',
+        },
+        {
+          dateBorrowed: new Date(),
+          id: uuid(),
+          isReturned: true,
+          name: 'bbb',
         }
       ],
       delete: undefined,
@@ -108,7 +114,7 @@ class App extends Component {
           showDeleteForm={this.showDeleteForm}
           showEditForm={this.showEditForm}
           sort={this.state.sort}
-          value={this.state.debts}
+          value={sortList(this.state.debts, this.state.sort)}
         />
         <DebtForm
           elementUpdated={this.elementUpdated}
@@ -123,6 +129,13 @@ class App extends Component {
       </div>
     );
   }
+}
+
+function sortList(list, order) {
+  const sortField = Object.keys(order)[0];
+  const orderDirection = order[sortField];
+  return list.sort( (a, b) =>
+    orderDirection > 0 ? a[sortField] > b[sortField] : a[sortField] < b[sortField]);
 }
 
 export default App;
