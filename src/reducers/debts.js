@@ -6,6 +6,7 @@ const INITIAL_STATE = {
     isReturned: false,
     name: 'initial-name',
   },
+  delete: undefined,
   list: [
     {
       dateBorrowed: new Date(),
@@ -50,7 +51,21 @@ const debts = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         sort: action.sort
-      }
+      };
+    case 'SHOW_DELETE_FORM':
+      return {
+        ...state,
+        delete: action.delete
+      };
+    case 'DELETE_ELEMENT': {
+      const list = state.list;
+      const debtIndex = list.findIndex(d => d.id === action.elementId);
+      return {
+        ...state,
+        list: [...list.slice(0, debtIndex), ...list.slice(debtIndex + 1)],
+        delete: undefined
+      };
+    }
     default:
       return state;
   }
