@@ -6,8 +6,7 @@ export default class DeleteDialog extends React.Component {
       if (elementId) {
         return (
           <div>
-            <p>Are you sure you want to delete
-              {this.props.elements.find(e => e.id === elementId).name}?
+            <p>Are you sure you want to delete {this.props.elements.find(e => e.id === elementId).name}?
             </p>
             <div>
               <button onClick={this.props.hideDeleteDialog}>Cancel</button>

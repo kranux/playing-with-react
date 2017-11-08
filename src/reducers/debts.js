@@ -57,6 +57,11 @@ const debts = (state = INITIAL_STATE, action) => {
         ...state,
         delete: action.delete
       };
+    case 'HIDE_DELETE_DIALOG':
+      return {
+        ...state,
+        delete: undefined
+      };
     case 'DELETE_ELEMENT': {
       const list = state.list;
       const debtIndex = list.findIndex(d => d.id === action.elementId);

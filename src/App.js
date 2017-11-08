@@ -8,27 +8,12 @@ import DeleteDialogContainer from './containers/delete-dialog-container';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.hideDeleteDialog = this.hideDeleteDialog.bind(this);
-  }
-
-  hideDeleteDialog() {
-    this.setState({
-      ...this.state,
-      delete: undefined
-    });
-  }
-
   render() {
     return (
       <div className="App">
         <ListContainer />
         <FormContainer />
-        <DeleteDialogContainer
-          hideDeleteDialog={this.hideDeleteDialog}
-        />
+        <DeleteDialogContainer />
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import DeleteDialog from '../delete-dialog/delete-dialog';
-import { deleteElement } from '../actions';
+import { deleteElement, hideDeleteDialog } from '../actions';
 
 const mapStateToProps = ({debts}) => ({
   value: debts.delete,
@@ -10,7 +10,10 @@ const mapStateToProps = ({debts}) => ({
 
 const mapDispatchToProps = dispatch => ({
   deleteElement: id => {
-    dispatch(deleteElement(id))
+    dispatch(deleteElement(id));
+  },
+  hideDeleteDialog: () => {
+    dispatch(hideDeleteDialog());
   }
 });
 

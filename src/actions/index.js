@@ -16,6 +16,10 @@ export const showDeleteForm = id => ({
   delete: id
 });
 
+export const hideDeleteDialog = () => ({
+  type: 'HIDE_DELETE_DIALOG'
+});
+
 export const deleteElement = id => ({
   type: 'DELETE_ELEMENT',
   elementId: id
