@@ -19,4 +19,9 @@ export const showDeleteForm = id => ({
 export const deleteElement = id => ({
   type: 'DELETE_ELEMENT',
   elementId: id
-})
+});
+
+export const showEditForm = element => ({
+  type: 'SHOW_EDIT_FORM',
+  form: element
+});

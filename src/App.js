@@ -12,14 +12,6 @@ class App extends Component {
     super(props);
 
     this.hideDeleteDialog = this.hideDeleteDialog.bind(this);
-    this.showEditForm = this.showEditForm.bind(this);
-  }
-
-  showEditForm(element) {
-    this.setState({
-      ...this.state,
-      form: {...element}
-    });
   }
 
   hideDeleteDialog() {
@@ -32,9 +24,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ListContainer
-          showEditForm={this.showEditForm}
-        />
+        <ListContainer />
         <FormContainer />
         <DeleteDialogContainer
           hideDeleteDialog={this.hideDeleteDialog}

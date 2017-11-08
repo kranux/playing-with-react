@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import ListOfDebts from '../list-of-debts/list-of-debts';
-import { changeSort, showDeleteForm } from '../actions';
+import { changeSort, showDeleteForm, showEditForm } from '../actions';
 
 function sortList(list, order) {
   const sortField = Object.keys(order)[0];
@@ -24,6 +24,9 @@ const mapDispatchToProps = dispatch => {
     },
     showDeleteForm: element => {
       dispatch(showDeleteForm(element.id))
+    },
+    showEditForm: element => {
+      dispatch(showEditForm(element));
     }
   };
 };

@@ -66,6 +66,11 @@ const debts = (state = INITIAL_STATE, action) => {
         delete: undefined
       };
     }
+    case 'SHOW_EDIT_FORM':
+      return {
+        ...state,
+        form: action.form
+      };
     default:
       return state;
   }
