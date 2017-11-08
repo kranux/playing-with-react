@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {formatTime} from '../utils';
+
 export default class DebtForm extends React.Component {
 
   constructor(props) {
@@ -13,12 +15,12 @@ export default class DebtForm extends React.Component {
 
   handleSubmit(event) {
     this.props.elementUpdated(this.state);
-
     event.preventDefault();
   }
 
   handleChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+    const parsedValue = event.target.type === 'checkbox' ? Boolean(event.target.checked) : event.target.value;
+    this.setState({[event.target.name]: parsedValue});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,6 +38,37 @@ export default class DebtForm extends React.Component {
             onChange={this.handleChange}
             type="text"
             value={this.state.name}
+          />
+        </div>
+        <div>
+          <label htmlFor="isReturnedInput">
+            <input
+              checked={this.state.isReturned}
+              id="isReturnedInput"
+              name="isReturned"
+              onChange={this.handleChange}
+              type="checkbox"
+            /> - is returned
+          </label>
+        </div>
+        <div>
+          <label htmlFor="dateBorrowedInput">Date borrowed</label>
+          <input
+            id="dateBorrowedInput"
+            name="dateBorrowed"
+            onChange={this.handleChange}
+            type="date"
+            value={formatTime(this.state.dateBorrowed)}
+          />
+        </div>
+        <div>
+          <label htmlFor="dueDateInput">Due date</label>
+          <input
+            id="dueDateInput"
+            name="dueDate"
+            onChange={this.handleChange}
+            type="date"
+            value={formatTime(this.state.dueDate)}
           />
         </div>
         <div>

@@ -13,17 +13,31 @@ class App extends Component {
 
     this.state = {
       form: {
-        name: 'initial-name'
+        dateBorrowed: new Date(),
+        isReturned: false,
+        name: 'initial-name',
       },
       debts: [
         {
+          dateBorrowed: new Date(),
           id: uuid(),
-          name:'aaa'
+          isReturned: false,
+          name: 'aaa',
+        },
+        {
+          dateBorrowed: new Date(),
+          id: uuid(),
+          isReturned: true,
+          name: 'bbb',
         }
       ],
-      delete: undefined
+      delete: undefined,
+      sort: {
+        name: -1
+      }
     };
 
+    this.changeSort = this.changeSort.bind(this);
     this.deleteElement = this.deleteElement.bind(this);
     this.elementUpdated = this.elementUpdated.bind(this);
     this.hideDeleteDialog = this.hideDeleteDialog.bind(this);
@@ -46,8 +60,9 @@ class App extends Component {
       ...this.state,
       debts: [...debts],
       form: {
+        id: undefined,
+        isReturned: false,
         name: '',
-        id: undefined
       }
     });
   }
@@ -83,13 +98,23 @@ class App extends Component {
     });
   }
 
+  changeSort(fieldName, order) {
+    this.setState({
+      sort: {
+        [fieldName]: order
+      }
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <ListOfDebts
+          changeSort={this.changeSort}
           showDeleteForm={this.showDeleteForm}
           showEditForm={this.showEditForm}
-          value={this.state.debts}
+          sort={this.state.sort}
+          value={sortList(this.state.debts, this.state.sort)}
         />
         <DebtForm
           elementUpdated={this.elementUpdated}
@@ -104,6 +129,13 @@ class App extends Component {
       </div>
     );
   }
+}
+
+function sortList(list, order) {
+  const sortField = Object.keys(order)[0];
+  const orderDirection = order[sortField];
+  return list.sort( (a, b) =>
+    orderDirection > 0 ? a[sortField] > b[sortField] : a[sortField] < b[sortField]);
 }
 
 export default App;
