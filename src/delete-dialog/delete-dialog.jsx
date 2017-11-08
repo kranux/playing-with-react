@@ -1,20 +1,14 @@
 import React from 'react';
 
-export default class DeleteDialog extends React.Component {
-    render() {
-      const elementId = this.props.value;
-      if (elementId) {
-        return (
-          <div>
-            <p>Are you sure you want to delete {this.props.elements.find(e => e.id === elementId).name}?
-            </p>
-            <div>
-              <button onClick={this.props.hideDeleteDialog}>Cancel</button>
-              <button onClick={() => this.props.deleteElement(elementId)}>Delete</button>
-            </div>
-          </div>
-        );
-      }
-      return null;
-    }
-}
+const DeleteDialog = ({value, elements, hideDeleteDialog, deleteElement}) => value ?
+  <div>
+    <p>Are you sure you want to delete {elements.find(e => e.id === value).name}?
+    </p>
+    <div>
+      <button onClick={hideDeleteDialog}>Cancel</button>
+      <button onClick={() => deleteElement(value)}>Delete</button>
+    </div>
+  </div>
+  : null;
+
+export default DeleteDialog;
