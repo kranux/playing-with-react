@@ -2,6 +2,13 @@ import React from 'react';
 
 import {formatTime} from '../utils';
 
+const formItem = (label, input) => (
+  <div className="form-item">
+    <label>{label}</label>
+    {input}
+  </div>
+);
+
 export default class DebtForm extends React.Component {
 
   constructor(props) {
@@ -30,8 +37,7 @@ export default class DebtForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div>
-          <label htmlFor="nameInput">Name</label>
+        {formItem('Name',
           <input
             id="nameInput"
             name="name"
@@ -39,7 +45,7 @@ export default class DebtForm extends React.Component {
             type="text"
             value={this.state.name}
           />
-        </div>
+        )}
         <div>
           <label htmlFor="isReturnedInput">
             <input
@@ -51,8 +57,7 @@ export default class DebtForm extends React.Component {
             /> - is returned
           </label>
         </div>
-        <div>
-          <label htmlFor="dateBorrowedInput">Date borrowed</label>
+        {formItem('Date borrowed',
           <input
             id="dateBorrowedInput"
             name="dateBorrowed"
@@ -60,9 +65,8 @@ export default class DebtForm extends React.Component {
             type="date"
             value={formatTime(this.state.dateBorrowed)}
           />
-        </div>
-        <div>
-          <label htmlFor="dueDateInput">Due date</label>
+        )}
+        {formItem('Due date',
           <input
             id="dueDateInput"
             name="dueDate"
@@ -70,7 +74,7 @@ export default class DebtForm extends React.Component {
             type="date"
             value={formatTime(this.state.dueDate)}
           />
-        </div>
+        )}
         <div>
           <input
             type="submit"
