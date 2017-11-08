@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import ListOfDebts from '../list-of-debts/list-of-debts';
 import { changeSort } from '../actions';
