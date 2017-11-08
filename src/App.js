@@ -3,8 +3,8 @@ import uuid from 'uuid/v1';
 
 import './App.css';
 import DebtForm from './debt-form/debt-form';
-import ListOfDebts from './list-of-debts/list-of-debts';
-import DeleteDialog from './delete-dialog/delete-dialog'
+import DeleteDialog from './delete-dialog/delete-dialog';
+import ListContainer from './containers/list-container';
 
 class App extends Component {
 
@@ -17,27 +17,9 @@ class App extends Component {
         isReturned: false,
         name: 'initial-name',
       },
-      debts: [
-        {
-          dateBorrowed: new Date(),
-          id: uuid(),
-          isReturned: false,
-          name: 'aaa',
-        },
-        {
-          dateBorrowed: new Date(),
-          id: uuid(),
-          isReturned: true,
-          name: 'bbb',
-        }
-      ],
-      delete: undefined,
-      sort: {
-        name: -1
-      }
+      delete: undefined
     };
 
-    this.changeSort = this.changeSort.bind(this);
     this.deleteElement = this.deleteElement.bind(this);
     this.elementUpdated = this.elementUpdated.bind(this);
     this.hideDeleteDialog = this.hideDeleteDialog.bind(this);
@@ -98,23 +80,12 @@ class App extends Component {
     });
   }
 
-  changeSort(fieldName, order) {
-    this.setState({
-      sort: {
-        [fieldName]: order
-      }
-    });
-  }
-
   render() {
     return (
       <div className="App">
-        <ListOfDebts
-          changeSort={this.changeSort}
+        <ListContainer
           showDeleteForm={this.showDeleteForm}
           showEditForm={this.showEditForm}
-          sort={this.state.sort}
-          value={sortList(this.state.debts, this.state.sort)}
         />
         <DebtForm
           elementUpdated={this.elementUpdated}
@@ -129,13 +100,6 @@ class App extends Component {
       </div>
     );
   }
-}
-
-function sortList(list, order) {
-  const sortField = Object.keys(order)[0];
-  const orderDirection = order[sortField];
-  return list.sort( (a, b) =>
-    orderDirection > 0 ? a[sortField] > b[sortField] : a[sortField] < b[sortField]);
 }
 
 export default App;
