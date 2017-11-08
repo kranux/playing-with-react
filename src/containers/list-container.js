@@ -10,26 +10,22 @@ function sortList(list, order) {
     orderDirection > 0 ? a[sortField] > b[sortField] : a[sortField] < b[sortField]);
 }
 
-const mapStateToProps = ({debts}) => {
-  return {
-    value: sortList(debts.list, debts.sort),
-    sort: debts.sort
-  };
-};
+const mapStateToProps = ({debts}) => ({
+  value: sortList(debts.list, debts.sort),
+  sort: debts.sort
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    changeSort: (name, order) => {
-      dispatch(changeSort(name, order));
-    },
-    showDeleteForm: element => {
-      dispatch(showDeleteForm(element.id))
-    },
-    showEditForm: element => {
-      dispatch(showEditForm(element));
-    }
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  changeSort: (name, order) => {
+    dispatch(changeSort(name, order));
+  },
+  showDeleteForm: element => {
+    dispatch(showDeleteForm(element.id))
+  },
+  showEditForm: element => {
+    dispatch(showEditForm(element));
+  }
+});
 
 const ListContainer = connect(
   mapStateToProps,

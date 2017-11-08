@@ -7,13 +7,11 @@ const mapStateToProps = ({debts}) => ({
   value: debts.form
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    elementUpdated: element => {
-      dispatch(addItem(element));
-    }
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  elementUpdated: element => {
+    dispatch(addItem(element));
+  }
+});
 
 const FormContainer = connect(
   mapStateToProps,

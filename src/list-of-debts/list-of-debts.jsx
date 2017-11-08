@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {formatTime} from '../utils';
+import { formatTime } from '../utils';
 
 export default class ListOfDebts extends React.Component {
 

@@ -26,6 +26,7 @@ const INITIAL_STATE = {
 
 const debts = (state = INITIAL_STATE, action) => {
   switch(action.type) {
+
     case 'ADD_ITEM':
       let list = state.list;
       const element = action.item;
@@ -47,21 +48,25 @@ const debts = (state = INITIAL_STATE, action) => {
           name: '',
         }
       };
+
     case 'CHANGE_SORT':
       return {
         ...state,
         sort: action.sort
       };
+
     case 'SHOW_DELETE_FORM':
       return {
         ...state,
         delete: action.delete
       };
+
     case 'HIDE_DELETE_DIALOG':
       return {
         ...state,
         delete: undefined
       };
+
     case 'DELETE_ELEMENT': {
       const list = state.list;
       const debtIndex = list.findIndex(d => d.id === action.elementId);
@@ -71,11 +76,13 @@ const debts = (state = INITIAL_STATE, action) => {
         delete: undefined
       };
     }
+
     case 'SHOW_EDIT_FORM':
       return {
         ...state,
         form: action.form
       };
+
     default:
       return state;
   }

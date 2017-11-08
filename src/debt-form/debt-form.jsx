@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {formatTime} from '../utils';
+import { formatTime } from '../utils';
 
 const formItem = (label, input) => (
   <div className="form-item">
